@@ -1,0 +1,7 @@
+<h1>Hotels</h1>
+
+<ul>
+  <li *ngFor="let hotel of hotels$ | async">
+    <p>{{ hotel?.name }}</p>
+  </li>
+</ul>
