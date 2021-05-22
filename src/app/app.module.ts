@@ -9,12 +9,18 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 import { HomeComponent } from './components/home/home.component';
 import { CommonModule } from '@angular/common';
 import { RatingComponent } from './components/rating/rating.component';
+import { EditButtonComponent } from './components/edit-button/edit-button.component';
+import { HotelEditComponent } from './components/hotel-edit/hotel-edit.component';
+import { DeleteButtonComponent } from './components/delete-button/delete-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    RatingComponent
+    RatingComponent,
+    EditButtonComponent,
+    HotelEditComponent,
+    DeleteButtonComponent
   ],
   imports: [
     BrowserModule,
