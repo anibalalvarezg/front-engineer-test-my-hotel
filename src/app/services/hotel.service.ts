@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { IHotel } from '../interfaces';
 
 @Injectable({
@@ -35,5 +35,12 @@ export class HotelService {
 
   addHotel(hotel: IHotel): Observable<IHotel> {
     return this.http.post<IHotel>(this.baseURL, hotel, this.httpOptions);
+  }
+
+  searchHotel(term: string): Observable<IHotel[]> {
+    if (!term.trim()) {
+      this.getHotels();
+    }
+    return this.http.get<IHotel[]>(`${this.baseURL}/?name=${term}`);
   }
 }
