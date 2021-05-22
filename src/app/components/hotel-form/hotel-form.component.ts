@@ -23,7 +23,7 @@ export class HotelFormComponent implements OnInit {
     price: ['', [Validators.required, Validators.min(0)]],
     wifi: [false],
     parking: [false],
-    laundry: [false],
+    pool: [false],
   });
 
   editFormControls = {
@@ -32,7 +32,7 @@ export class HotelFormComponent implements OnInit {
     price: this.editForm.get('price'),
     wifi: this.editForm.get('wifi'),
     parking: this.editForm.get('parking'),
-    laundry: this.editForm.get('laundry'),
+    pool: this.editForm.get('pool'),
   };
 
   constructor(
@@ -52,7 +52,7 @@ export class HotelFormComponent implements OnInit {
         if (additionalServices?.length) {
           this.editFormControls.wifi?.setValue(Boolean(additionalServices[0]));
           this.editFormControls.parking?.setValue(Boolean(additionalServices[1]));
-          this.editFormControls.laundry?.setValue(Boolean(additionalServices[2]));
+          this.editFormControls.pool?.setValue(Boolean(additionalServices[2]));
         }
       });
     }
@@ -60,13 +60,13 @@ export class HotelFormComponent implements OnInit {
 
   onSubmit() {
     if (!this.editForm.valid) { return; }
-    const { name, rating, price, wifi, parking, laundry } = this.editForm.value;
+    const { name, rating, price, wifi, parking, pool } = this.editForm.value;
     const hotel: IHotel = {
       id: this.hotelId,
       name: name.trim(),
       rating,
       price,
-      additionalServices: [+wifi, +parking, +laundry],
+      additionalServices: [+wifi, +parking, +pool],
       createdAt: new Date(Date.now()).toISOString(),
     };
 
