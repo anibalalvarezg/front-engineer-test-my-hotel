@@ -7,17 +7,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { HomeComponent } from './components/home/home.component';
+import { CommonModule } from '@angular/common';
+import { RatingComponent } from './components/rating/rating.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-
+    CommonModule,
     // For mocking server
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }

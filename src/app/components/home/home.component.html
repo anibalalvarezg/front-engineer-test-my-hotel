@@ -1,7 +1,57 @@
-<h1>Hotels</h1>
+<div class="overflow-x-auto w-full">
+  <table
+    class="
+      mx-auto
+      max-w-4xl
+      w-full
+      whitespace-nowrap
+      rounded-lg
+      bg-white
+      divide-y divide-gray-300
+      overflow-hidden
+    "
+  >
+    <thead class="bg-gray-50">
+      <tr class="text-gray-600 text-left">
+        <th class="font-semibold text-sm uppercase px-6 py-4">Nombre Hotel</th>
+        <th class="font-semibold text-sm uppercase px-6 py-4">Evaluación</th>
+        <th class="font-semibold text-sm uppercase px-6 py-4">Precio por noche</th>
+        <th class="font-semibold text-sm uppercase px-6 py-4">Fecha de Registro</th>
+        <th class="font-semibold text-sm uppercase px-6 py-4">Servicios</th>
+        <th class="font-semibold text-sm uppercase px-6 py-4">Acción</th>
+      </tr>
+    </thead>
 
-<ul>
-  <li *ngFor="let hotel of hotels$ | async">
-    <p>{{ hotel?.name }}</p>
-  </li>
-</ul>
+    <tbody class="divide-y divide-gray-200">
+      <tr *ngFor="let hotel of hotels$ | async">
+        <td class="px-6 py-4">
+          <div class="flex items-center space-x-3">
+            <div>
+              <p class="">{{ hotel?.name }}</p>
+            </div>
+          </div>
+        </td>
+        <td class="px-6 py-4">
+          <app-rating [rating]="hotel?.rating || 0"></app-rating>
+        </td>
+        <td class="px-6 py-4">
+          <p class="">{{ hotel?.price | currency }}</p>
+        </td>
+        <td class="px-6 py-4">
+          <p class="">{{ hotel?.createdAt | date:'dd-MM-yyy' }}</p>
+        </td>
+        <td class="px-6 py-4">
+          <p class="">{{ hotel?.additionalServices }}</p>
+        </td>
+        <td class="px-6 py-4 flex text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-blue-400 hover:text-blue-900 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-400 hover:text-blue-900 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

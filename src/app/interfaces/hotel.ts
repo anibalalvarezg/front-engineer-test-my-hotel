@@ -3,5 +3,6 @@ export interface IHotel {
   name: string;
   rating: number;
   price: number;
-  additionalServices?: string[];
+  createdAt: string;
+  additionalServices?: number[];
 }

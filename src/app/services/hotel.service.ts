@@ -7,7 +7,7 @@ import { IHotel } from '../interfaces';
   providedIn: 'root'
 })
 export class HotelService {
-  private baseURL = 'api/hotels';  // URL to web api
+  private baseURL = 'api/hotels';  // URL to web api}
 
   constructor(private http: HttpClient) { }
 

@@ -8,12 +8,12 @@ import { IHotel } from '../interfaces';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const hotels = [
-      { id: 11, name: 'Dr Nice', rating: 3, price: 10000, aditionalServices: ['Wifi gratis', 'Desayuno', 'Lavandería'] },
-      { id: 12, name: 'Dr Nice', rating: 3, price: 10000, aditionalServices: ['Wifi gratis', 'Desayuno', 'Lavandería'] },
-      { id: 13, name: 'Dr Nice', rating: 3, price: 10000, aditionalServices: ['Wifi gratis', 'Desayuno', 'Lavandería'] },
-      { id: 14, name: 'Dr Nice', rating: 3, price: 10000, aditionalServices: ['Wifi gratis', 'Desayuno', 'Lavandería'] },
-      { id: 15, name: 'Dr Nice', rating: 3, price: 10000, aditionalServices: ['Wifi gratis', 'Desayuno', 'Lavandería'] },
-      { id: 16, name: 'Dr Nice', rating: 3, price: 10000, aditionalServices: ['Wifi gratis', 'Desayuno', 'Lavandería'] },
+      { id: 11, name: 'Maki Hostel', rating: 1, price: 50000, createdAt: '2021-05-22T01:21:59.603Z',aditionalServices: [1,0,1] },
+      { id: 12, name: 'Hotel Fauna', rating: 3, price: 150000, createdAt: '2021-05-22T01:21:59.603Z',aditionalServices: [0,0,1] },
+      { id: 13, name: 'Hotel Boutique Acontraluz', rating: 4, price: 120000, createdAt: '2021-05-22T01:21:59.603Z',aditionalServices: [0,1,1] },
+      { id: 14, name: 'Hotel 17', rating: 2, price: 300000, createdAt: '2021-05-22T01:21:59.603Z',aditionalServices: [0,1,1] },
+      { id: 15, name: 'Casa Galos Hotel & Lofts', rating: 5, price: 450000, createdAt: '2021-05-22T01:21:59.603Z',aditionalServices: [1,1,1] },
+      { id: 16, name: 'Augusta Apart Hotel', rating: 5, price: 600000, createdAt: '2021-05-22T01:21:59.603Z',aditionalServices: [1,1,1] },
     ];
     return {hotels};
   }
