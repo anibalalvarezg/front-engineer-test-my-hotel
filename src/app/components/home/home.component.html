@@ -1,4 +1,4 @@
-<div class="overflow-x-auto w-full">
+<div class="overflow-x-auto w-full" *ngIf="(hotels$ | async) as hotels">
   <table
     class="
       mx-auto
@@ -23,7 +23,7 @@
     </thead>
 
     <tbody class="divide-y divide-gray-200">
-      <tr *ngFor="let hotel of hotels$ | async">
+      <tr *ngFor="let hotel of hotels">
         <td class="px-6 py-4">
           <div class="flex items-center space-x-3">
             <div>

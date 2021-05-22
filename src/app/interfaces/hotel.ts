@@ -1,5 +1,5 @@
 export interface IHotel {
-  id: number;
+  id?: number;
   name: string;
   rating: number;
   price: number;

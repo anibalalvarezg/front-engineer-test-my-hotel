@@ -12,6 +12,9 @@ import { RatingComponent } from './components/rating/rating.component';
 import { EditButtonComponent } from './components/edit-button/edit-button.component';
 import { HotelEditComponent } from './components/hotel-edit/hotel-edit.component';
 import { DeleteButtonComponent } from './components/delete-button/delete-button.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HotelFormComponent } from './components/hotel-form/hotel-form.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,16 @@ import { DeleteButtonComponent } from './components/delete-button/delete-button.
     RatingComponent,
     EditButtonComponent,
     HotelEditComponent,
-    DeleteButtonComponent
+    DeleteButtonComponent,
+    SpinnerComponent,
+    HotelFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
+    ReactiveFormsModule,
     // For mocking server
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
