@@ -41,7 +41,25 @@
           <p class="">{{ hotel?.createdAt | date:'dd-MM-yyy' }}</p>
         </td>
         <td class="px-6 py-4">
-          <p class="">{{ hotel?.additionalServices }}</p>
+          <ng-container *ngFor="let service of hotel.additionalServices; let i = index">
+            <ng-container [ngSwitch]="i">
+              <ng-container *ngSwitchCase="0">
+                <ng-container *ngIf="service">
+                  <i class="fas fa-wifi mr-1" title="Wifi"></i>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngSwitchCase="1">
+                <ng-container *ngIf="service">
+                  <i class="fas fa-parking mr-1" title="Estacionamiento"></i>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngSwitchCase="2">
+                <ng-container *ngIf="service">
+                  <i class="fas fa-swimming-pool" title="Piscina"></i>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </ng-container>
         </td>
         <td class="px-6 py-4 flex text-center">
           <app-edit-button (clickHandler)="editHotel(hotel.id || null)"></app-edit-button>

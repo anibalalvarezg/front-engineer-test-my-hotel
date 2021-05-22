@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { IHotel } from 'src/app/interfaces';
 import { HotelService } from 'src/app/services/hotel.service';
 import { Location } from '@angular/common';
@@ -11,16 +10,14 @@ import { Location } from '@angular/common';
   styleUrls: ['./hotel-edit.component.scss']
 })
 export class HotelEditComponent implements OnInit {
-  hotel$?: Observable<IHotel>;
+  hotel$?: Subscription;
   hotelId?: number;
+
   constructor(
-    private route: ActivatedRoute,
     private hotelService: HotelService,
     private location: Location) { }
 
   ngOnInit(): void {
-    this.hotelId = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.hotel$ = this.hotelService.getHotel(this.hotelId);
   }
 
   edit(hotel: IHotel) {
