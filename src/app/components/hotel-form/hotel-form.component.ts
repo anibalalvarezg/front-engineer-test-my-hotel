@@ -43,17 +43,19 @@ export class HotelFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.hotelId = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.hotel$ = this.hotelService.getHotel(this.hotelId).subscribe((hotel: IHotel) => {
-      const { name, rating, price, additionalServices } = hotel;
-      this.editFormControls.name?.setValue(name);
-      this.editFormControls.rating?.setValue(rating);
-      this.editFormControls.price?.setValue(price);
-      if (additionalServices?.length) {
-        this.editFormControls.wifi?.setValue(Boolean(additionalServices[0]));
-        this.editFormControls.parking?.setValue(Boolean(additionalServices[1]));
-        this.editFormControls.laundry?.setValue(Boolean(additionalServices[2]));
-      }
-    });
+    if (this.hotelId) {
+      this.hotel$ = this.hotelService.getHotel(this.hotelId).subscribe((hotel: IHotel) => {
+        const { name, rating, price, additionalServices } = hotel;
+        this.editFormControls.name?.setValue(name);
+        this.editFormControls.rating?.setValue(rating);
+        this.editFormControls.price?.setValue(price);
+        if (additionalServices?.length) {
+          this.editFormControls.wifi?.setValue(Boolean(additionalServices[0]));
+          this.editFormControls.parking?.setValue(Boolean(additionalServices[1]));
+          this.editFormControls.laundry?.setValue(Boolean(additionalServices[2]));
+        }
+      });
+    }
   }
 
   onSubmit() {

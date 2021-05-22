@@ -2,43 +2,39 @@
   <form class="" [formGroup]="editForm" (ngSubmit)="onSubmit()">
     <div class="flex flex-wrap -mx-3 mb-2">
       <div class="w-full  px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-          Nombre
+        <label class="block uppercase tracking-wide text-gray-700 text-xs mb-2" for="name">
+          <span class="font-bold">Nombre</span>*
         </label>
         <input
           class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight outline-none bg-white border-gray-500 focus:ring-1 focus:ring-blue-300"
-          id="grid-first-name"
+          id="name"
           type="text"
           placeholder="Ingrese el nombre del hotel"
           formControlName="name">
         <!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> -->
       </div>
-      <!-- <div class="w-full md:w-1/2 px-3">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-          Last Name
-        </label>
-        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe">
-      </div> -->
     </div>
     <div class="flex flex-wrap -mx-3 mb-2">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
-          Valoración
+        <label class="block uppercase tracking-wide text-gray-700 text-xs mb-2" for="rating">
+          <span class="font-bold">Valoración</span>*
         </label>
         <input
           class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight outline-none bg-white border-gray-500 focus:ring-1 focus:ring-blue-300"
-          id="grid-city"
+          id="rating"
           type="number"
           placeholder="1-5"
+          min="1"
+          max="5"
           formControlName="rating">
       </div>
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
-          Precio por Noche
+        <label class="block uppercase tracking-wide text-gray-700 text-xs mb-2" for="price">
+          <span class="font-bold">Precio por Noche</span>*
         </label>
         <input
           class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight outline-none bg-white border-gray-500 focus:ring-1 focus:ring-blue-300"
-          id="grid-city"
+          id="price"
           type="number"
           placeholder="Ingrese precio por noche"
           formControlName="price">
@@ -46,7 +42,7 @@
     </div>
     <div class="flex flex-wrap -mx-3 mb-2">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
           Servicios Adicionales
         </label>
         <div class="flex">

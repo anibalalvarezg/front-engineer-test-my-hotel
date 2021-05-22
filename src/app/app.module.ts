@@ -15,6 +15,7 @@ import { DeleteButtonComponent } from './components/delete-button/delete-button.
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HotelFormComponent } from './components/hotel-form/hotel-form.component';
+import { HotelCreateComponent } from './components/hotel-create/hotel-create.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HotelFormComponent } from './components/hotel-form/hotel-form.component
     HotelEditComponent,
     DeleteButtonComponent,
     SpinnerComponent,
-    HotelFormComponent
+    HotelFormComponent,
+    HotelCreateComponent
   ],
   imports: [
     BrowserModule,

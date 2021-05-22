@@ -32,4 +32,8 @@ export class HotelService {
   updateHotel(hotel: IHotel): Observable<any> {
     return this.http.put(this.baseURL, hotel, this.httpOptions);
   }
+
+  addHotel(hotel: IHotel): Observable<IHotel> {
+    return this.http.post<IHotel>(this.baseURL, hotel, this.httpOptions);
+  }
 }
