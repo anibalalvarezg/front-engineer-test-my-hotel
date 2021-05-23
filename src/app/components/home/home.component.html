@@ -1,0 +1,92 @@
+<div class="text-black bg-white flex items-center justify-end mx-auto max-w-4xl w-full py-4">
+  <div class="border rounded overflow-hidden flex">
+    <input type="text" class="appearance-none px-3 py-1 focus:ring-1 focus:ring-blue-300" placeholder="Buscar Hotel..." [formControl]="searchTerms">
+    <button class="flex items-center justify-center px-4 border-l">
+      <svg class="h-4 w-4 text-grey-dark" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/></svg>
+    </button>
+  </div>
+</div>
+<div class="overflow-x-auto w-full" *ngIf="(hotels$ | async) as hotels; else noHotelData">
+  <table
+    class="
+      mx-auto
+      max-w-4xl
+      w-full
+      whitespace-nowrap
+      rounded-lg
+      bg-white
+      divide-y divide-gray-300
+      overflow-hidden
+    "
+    *ngIf="hotels.length; else hotelNameNotFound"
+  >
+    <thead class="bg-gray-50">
+      <tr class="text-gray-600 text-left">
+        <th class="font-semibold text-sm uppercase px-6 py-4">Nombre Hotel</th>
+        <th class="font-semibold text-sm uppercase px-6 py-4">Evaluación</th>
+        <th class="font-semibold text-sm uppercase px-6 py-4">Precio por noche</th>
+        <th class="font-semibold text-sm uppercase px-6 py-4">Fecha de Registro</th>
+        <th class="font-semibold text-sm uppercase px-6 py-4">Servicios</th>
+        <th class="font-semibold text-sm uppercase px-6 py-4">Acción</th>
+      </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200">
+      <tr *ngFor="let hotel of hotels">
+        <td class="px-6 py-4">
+          <div class="flex items-center space-x-3">
+            <div>
+              <p class="">{{ hotel?.name }}</p>
+            </div>
+          </div>
+        </td>
+        <td class="px-6 py-4">
+          <app-rating [rating]="hotel?.rating || 0"></app-rating>
+        </td>
+        <td class="px-6 py-4">
+          <p class="">{{ hotel?.price | customCurrencyCLP }}</p>
+        </td>
+        <td class="px-6 py-4">
+          <p class="">{{ hotel?.createdAt | date:'dd-MM-yyy' }}</p>
+        </td>
+        <td class="px-6 py-4">
+          <ng-container *ngFor="let service of hotel.additionalServices; let i = index">
+            <ng-container [ngSwitch]="i">
+              <ng-container *ngSwitchCase="0">
+                <ng-container *ngIf="service">
+                  <i class="fas fa-wifi mr-1" title="Wifi"></i>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngSwitchCase="1">
+                <ng-container *ngIf="service">
+                  <i class="fas fa-parking mr-1" title="Estacionamiento"></i>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngSwitchCase="2">
+                <ng-container *ngIf="service">
+                  <i class="fas fa-swimming-pool" title="Piscina"></i>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </td>
+        <td class="px-6 py-4 flex text-center">
+          <app-edit-button (clickHandler)="editHotel(hotel.id || null)"></app-edit-button>
+          <app-delete-button (clickHandler)="deleteHotel(hotel.id || null)"></app-delete-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noHotelData>
+  <div class="mx-auto max-w-4xl w-full bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
+    <strong class="font-bold">Cargando...</strong>
+  </div>
+</ng-template>
+
+<ng-template #hotelNameNotFound>
+  <div class="mx-auto max-w-4xl w-full bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+    <strong class="font-bold">"{{ searchTerms?.value }}" no encontrado. </strong>
+  </div>
+</ng-template>

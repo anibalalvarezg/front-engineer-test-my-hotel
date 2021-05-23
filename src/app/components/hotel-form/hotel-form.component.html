@@ -1,0 +1,103 @@
+<div class="w-full">
+  <form class="" [formGroup]="editForm" (ngSubmit)="onSubmit($event)">
+    <div class="flex flex-wrap -mx-3 mb-2">
+      <div class="w-full  px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs mb-2" for="name">
+          <span class="font-bold">Nombre</span>*
+        </label>
+        <input
+          class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight outline-none bg-white border-gray-500 focus:ring-1 focus:ring-blue-300"
+          id="name"
+          type="text"
+          placeholder="Ingrese el nombre del hotel"
+          formControlName="name"
+          [ngClass]="{'border-red-500': (editFormControls.name?.touched || editFormControls.name?.dirty) && editFormControls.name?.errors}">
+        <p
+          class="text-red-500 text-xs italic"
+          *ngIf="(editFormControls.name?.touched || editFormControls.name?.dirty) && editFormControls.name?.hasError('required')">Este campo debe ser completado.</p>
+      </div>
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-2">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs mb-2" for="rating">
+          <span class="font-bold">Valoración</span>*
+        </label>
+        <input
+          class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight outline-none bg-white border-gray-500 focus:ring-1 focus:ring-blue-300"
+          id="rating"
+          type="number"
+          placeholder="1-5"
+          min="1"
+          max="5"
+          formControlName="rating"
+          [ngClass]="{'border-red-500': (editFormControls.rating?.touched || editFormControls.rating?.dirty) && editFormControls.rating?.errors}">
+          <p
+            class="text-red-500 text-xs italic"
+            *ngIf="(editFormControls.rating?.touched || editFormControls.rating?.dirty) && editFormControls.rating?.hasError('required')">Este campo debe ser completado.</p>
+          <p
+            class="text-red-500 text-xs italic"
+            *ngIf="(editFormControls.rating?.touched || editFormControls.rating?.dirty) && (editFormControls.rating?.hasError('min') || editFormControls.rating?.hasError('max'))">El valor debe estar en el rango [1-5].</p>
+      </div>
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs mb-2" for="price">
+          <span class="font-bold">Precio por Noche</span>*
+        </label>
+        <input
+          class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight outline-none bg-white border-gray-500 focus:ring-1 focus:ring-blue-300"
+          id="price"
+          type="text"
+          placeholder="Ingrese precio por noche"
+          formControlName="price"
+          appCurrency
+          (keydown)="validateInputWithRegex($event, REGEX_NUMBERS, false)"
+          [ngClass]="{'border-red-500': (editFormControls.price?.touched || editFormControls.price?.dirty) && editFormControls.price?.errors}">
+          <p
+            class="text-red-500 text-xs italic"
+            *ngIf="(editFormControls.price?.touched || editFormControls.price?.dirty) && editFormControls.price?.hasError('required')">Este campo debe ser completado.</p>
+      </div>
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-2">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Servicios Adicionales
+        </label>
+        <div class="flex">
+          <label class="flex items-center mr-10">
+            <input
+              type="checkbox"
+              class="form-checkbox border border-4 border-gray-200"
+              formControlName="wifi">
+            <span class="ml-2">Wifi</span>
+          </label>
+          <label class="flex items-center mr-10">
+            <input
+              type="checkbox"
+              class="form-checkbox border border-4 border-gray-200"
+              formControlName="parking">
+            <span class="ml-2">Estacionamiento</span>
+          </label>
+          <label class="flex items-center">
+            <input
+              type="checkbox"
+              class="form-checkbox border border-4 border-gray-200"
+              formControlName="pool">
+            <span class="ml-2">Piscina</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-wrap -mx-3 my-5">
+      <button
+        type="submit"
+        class="m-3 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50">
+          Guardar
+      </button>
+      <button
+        type="button"
+        class="m-3 border-2 border-blue-600 bg-white hover:bg-blue-700 hover:text-white text-blue-500 font-bold py-2 px-4 rounded"
+        (click)="editForm.reset()">
+          Limpiar
+      </button>
+    </div>
+  </form>
+</div>
