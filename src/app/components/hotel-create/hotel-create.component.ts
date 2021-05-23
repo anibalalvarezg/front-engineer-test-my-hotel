@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { IHotel } from 'src/app/interfaces';
 import { HotelService } from 'src/app/services/hotel.service';
 
@@ -7,14 +8,15 @@ import { HotelService } from 'src/app/services/hotel.service';
   templateUrl: './hotel-create.component.html',
   styleUrls: ['./hotel-create.component.scss']
 })
-export class HotelCreateComponent implements OnInit {
+export class HotelCreateComponent {
 
-  constructor(private hotelService: HotelService) { }
-
-  ngOnInit(): void {
-  }
+  constructor(
+    private hotelService: HotelService,
+    private router: Router,
+  ) { }
 
   create(hotel: IHotel) {
     this.hotelService.addHotel(hotel).subscribe();
+    this.router.navigate(['/home']);
   }
 }

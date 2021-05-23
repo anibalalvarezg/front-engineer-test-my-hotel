@@ -43,7 +43,7 @@
           <app-rating [rating]="hotel?.rating || 0"></app-rating>
         </td>
         <td class="px-6 py-4">
-          <p class="">{{ hotel?.price | currency }}</p>
+          <p class="">{{ hotel?.price | customCurrencyCLP }}</p>
         </td>
         <td class="px-6 py-4">
           <p class="">{{ hotel?.createdAt | date:'dd-MM-yyy' }}</p>

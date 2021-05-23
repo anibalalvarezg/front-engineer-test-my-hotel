@@ -16,6 +16,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HotelFormComponent } from './components/hotel-form/hotel-form.component';
 import { HotelCreateComponent } from './components/hotel-create/hotel-create.component';
+import { CustomCurrencyCLPPipe } from './pipes/custom-currency-clp.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HotelCreateComponent } from './components/hotel-create/hotel-create.com
     DeleteButtonComponent,
     SpinnerComponent,
     HotelFormComponent,
-    HotelCreateComponent
+    HotelCreateComponent,
+    CustomCurrencyCLPPipe
   ],
   imports: [
     BrowserModule,
