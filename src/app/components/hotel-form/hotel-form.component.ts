@@ -15,12 +15,14 @@ export class HotelFormComponent implements OnInit {
   @Input() hotelId!: number;
   @Output() hotelEmit = new EventEmitter<IHotel>();
 
+  readonly REGEX_NUMBERS = /^[0-9\.]*$/;
+
   hotel$?: Subscription;
 
   editForm = this.fb.group({
     name: ['', Validators.required],
     rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]],
-    price: ['', [Validators.required, Validators.min(0)]],
+    price: ['', [Validators.required]],
     wifi: [false],
     parking: [false],
     pool: [false],
@@ -48,7 +50,7 @@ export class HotelFormComponent implements OnInit {
         const { name, rating, price, additionalServices } = hotel;
         this.editFormControls.name?.setValue(name);
         this.editFormControls.rating?.setValue(rating);
-        this.editFormControls.price?.setValue(price);
+        this.editFormControls.price?.setValue(String(price).replace(/\B(?=(\d{3})+(?!\d))/g, "."));
         if (additionalServices?.length) {
           this.editFormControls.wifi?.setValue(Boolean(additionalServices[0]));
           this.editFormControls.parking?.setValue(Boolean(additionalServices[1]));
@@ -66,7 +68,7 @@ export class HotelFormComponent implements OnInit {
         id: this.hotelId,
         name: name.trim(),
         rating,
-        price,
+        price: price.replace('.', ''),
         additionalServices: [+wifi, +parking, +pool],
         createdAt: new Date(Date.now()).toISOString(),
       };
@@ -77,4 +79,10 @@ export class HotelFormComponent implements OnInit {
     }
   }
 
+  validateInputWithRegex($event: KeyboardEvent, regex: RegExp | string, match = true): void {
+    const matchCondition = match ? $event.key.match(regex) : !$event.key.match(regex);
+    if (matchCondition && $event.key !== 'Backspace') {
+      $event.preventDefault();
+    }
+  }
 }
