@@ -12,11 +12,11 @@ import { RatingComponent } from './components/rating/rating.component';
 import { EditButtonComponent } from './components/edit-button/edit-button.component';
 import { HotelEditComponent } from './components/hotel-edit/hotel-edit.component';
 import { DeleteButtonComponent } from './components/delete-button/delete-button.component';
-import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HotelFormComponent } from './components/hotel-form/hotel-form.component';
 import { HotelCreateComponent } from './components/hotel-create/hotel-create.component';
 import { CustomCurrencyCLPPipe } from './pipes/custom-currency-clp.pipe';
+import { CurrencyDirective } from './directives/currency.directive';
 
 @NgModule({
   declarations: [
@@ -26,10 +26,10 @@ import { CustomCurrencyCLPPipe } from './pipes/custom-currency-clp.pipe';
     EditButtonComponent,
     HotelEditComponent,
     DeleteButtonComponent,
-    SpinnerComponent,
     HotelFormComponent,
     HotelCreateComponent,
-    CustomCurrencyCLPPipe
+    CustomCurrencyCLPPipe,
+    CurrencyDirective
   ],
   imports: [
     BrowserModule,
