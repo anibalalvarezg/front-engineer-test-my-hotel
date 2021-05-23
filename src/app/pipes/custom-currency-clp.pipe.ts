@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CustomCurrencyCLPPipe implements PipeTransform {
 
-  transform(value: number | undefined): string {
+  transform(value: string | undefined): string {
     return value ? '$' + String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ".") : '-';
   }
 
