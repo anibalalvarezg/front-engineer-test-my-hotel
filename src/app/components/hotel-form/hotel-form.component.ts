@@ -58,19 +58,23 @@ export class HotelFormComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    if (!this.editForm.valid) { return; }
-    const { name, rating, price, wifi, parking, pool } = this.editForm.value;
-    const hotel: IHotel = {
-      id: this.hotelId,
-      name: name.trim(),
-      rating,
-      price,
-      additionalServices: [+wifi, +parking, +pool],
-      createdAt: new Date(Date.now()).toISOString(),
-    };
+  onSubmit(event: Event) {
+    event.preventDefault();
+    if (this.editForm.valid) {
+      const { name, rating, price, wifi, parking, pool } = this.editForm.value;
+      const hotel: IHotel = {
+        id: this.hotelId,
+        name: name.trim(),
+        rating,
+        price,
+        additionalServices: [+wifi, +parking, +pool],
+        createdAt: new Date(Date.now()).toISOString(),
+      };
 
-    this.hotelEmit.next(hotel);
+      this.hotelEmit.next(hotel);
+    } else {
+      this.editForm.markAllAsTouched();
+    }
   }
 
 }

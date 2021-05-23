@@ -1,5 +1,5 @@
 <div class="w-full">
-  <form class="" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <form class="" [formGroup]="editForm" (ngSubmit)="onSubmit($event)">
     <div class="flex flex-wrap -mx-3 mb-2">
       <div class="w-full  px-3 mb-6 md:mb-0">
         <label class="block uppercase tracking-wide text-gray-700 text-xs mb-2" for="name">
@@ -10,8 +10,11 @@
           id="name"
           type="text"
           placeholder="Ingrese el nombre del hotel"
-          formControlName="name">
-        <!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> -->
+          formControlName="name"
+          [ngClass]="{'border-red-500': (editFormControls.name?.touched || editFormControls.name?.dirty) && editFormControls.name?.errors}">
+        <p
+          class="text-red-500 text-xs italic"
+          *ngIf="(editFormControls.name?.touched || editFormControls.name?.dirty) && editFormControls.name?.hasError('required')">Este campo debe ser completado.</p>
       </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-2">
@@ -26,7 +29,14 @@
           placeholder="1-5"
           min="1"
           max="5"
-          formControlName="rating">
+          formControlName="rating"
+          [ngClass]="{'border-red-500': (editFormControls.rating?.touched || editFormControls.rating?.dirty) && editFormControls.rating?.errors}">
+          <p
+            class="text-red-500 text-xs italic"
+            *ngIf="(editFormControls.rating?.touched || editFormControls.rating?.dirty) && editFormControls.rating?.hasError('required')">Este campo debe ser completado.</p>
+          <p
+            class="text-red-500 text-xs italic"
+            *ngIf="(editFormControls.rating?.touched || editFormControls.rating?.dirty) && (editFormControls.rating?.hasError('min') || editFormControls.rating?.hasError('max'))">El valor debe estar en el rango [1-5].</p>
       </div>
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label class="block uppercase tracking-wide text-gray-700 text-xs mb-2" for="price">
@@ -37,7 +47,11 @@
           id="price"
           type="number"
           placeholder="Ingrese precio por noche"
-          formControlName="price">
+          formControlName="price"
+          [ngClass]="{'border-red-500': (editFormControls.price?.touched || editFormControls.price?.dirty) && editFormControls.price?.errors}">
+          <p
+            class="text-red-500 text-xs italic"
+            *ngIf="(editFormControls.price?.touched || editFormControls.price?.dirty) && editFormControls.price?.hasError('required')">Este campo debe ser completado.</p>
       </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-2">
@@ -73,8 +87,7 @@
     <div class="flex flex-wrap -mx-3 my-5">
       <button
         type="submit"
-        class="m-3 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50"
-        [disabled]="!editForm.valid">
+        class="m-3 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50">
           Guardar
       </button>
       <button
