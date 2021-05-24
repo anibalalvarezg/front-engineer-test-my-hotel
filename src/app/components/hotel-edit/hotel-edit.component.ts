@@ -7,18 +7,20 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-hotel-edit',
   templateUrl: './hotel-edit.component.html',
-  styleUrls: ['./hotel-edit.component.scss']
 })
 export class HotelEditComponent {
-  hotel$?: Subscription;
+  subscription: Subscription[] = [];
 
   constructor(
     private hotelService: HotelService,
     private location: Location) { }
 
   edit(hotel: IHotel) {
-    this.hotelService.updateHotel(hotel).subscribe();
+    this.subscription.push(this.hotelService.updateHotel(hotel).subscribe());
     this.location.back();
   }
 
+  ngOnDestroy() {
+    this.subscription.forEach(subs => subs.unsubscribe());
+  }
 }

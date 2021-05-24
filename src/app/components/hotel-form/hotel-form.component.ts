@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -8,9 +8,8 @@ import { HotelService } from 'src/app/services/hotel.service';
 @Component({
   selector: 'app-hotel-form',
   templateUrl: './hotel-form.component.html',
-  styleUrls: ['./hotel-form.component.scss']
 })
-export class HotelFormComponent implements OnInit {
+export class HotelFormComponent implements OnInit, OnDestroy {
 
   @Input() hotelId!: number;
   @Output() hotelEmit = new EventEmitter<IHotel>();
@@ -84,5 +83,9 @@ export class HotelFormComponent implements OnInit {
     if (matchCondition && $event.key !== 'Backspace') {
       $event.preventDefault();
     }
+  }
+
+  ngOnDestroy() {
+    this.hotel$?.unsubscribe();
   }
 }
