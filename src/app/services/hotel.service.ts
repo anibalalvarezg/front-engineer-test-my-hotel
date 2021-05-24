@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { IHotel } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HotelService {
-  private baseURL = 'api/hotels';
+  private baseURL = environment.baseURL;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
