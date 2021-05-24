@@ -7,6 +7,8 @@
 
 This project was generated with Angular CLI version 12.0.0.
 
+*This project mimics communication with a remote data server by using the In-memory-Web-API(https://github.com/angular/angular/tree/master/packages/misc/angular-in-memory-web-api)
+
 ### ✨ [Demo](https://affectionate-wing-d953e7.netlify.app/home)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/0b609dcd-d9b9-47dc-8cb6-6275c252b444/deploy-status)](https://app.netlify.com/sites/affectionate-wing-d953e7/deploys)
 ## Install
