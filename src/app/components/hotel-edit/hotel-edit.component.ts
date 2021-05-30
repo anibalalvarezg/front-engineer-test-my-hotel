@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IHotel } from 'src/app/interfaces';
 import { HotelService } from 'src/app/services/hotel.service';
@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
   selector: 'app-hotel-edit',
   templateUrl: './hotel-edit.component.html',
 })
-export class HotelEditComponent {
+export class HotelEditComponent implements OnDestroy {
   subscription: Subscription[] = [];
 
   constructor(
