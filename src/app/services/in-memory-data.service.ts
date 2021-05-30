@@ -19,6 +19,6 @@ export class InMemoryDataService implements InMemoryDbService {
   }
 
   genId(hotels: IHotel[]): number {
-    return hotels.length > 0 ? Math.max(...hotels.map(hero => hero.id)) + 1 : 11;
+    return hotels.length > 0 ? Math.max(...hotels.map(hotel => hotel.id)) + 1 : 11;
   }
 }
